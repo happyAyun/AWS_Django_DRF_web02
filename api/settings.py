@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'person',
     'user',  # 추가
     'rest_framework',  # 추가
     'rest_framework_jwt',  # 추가
