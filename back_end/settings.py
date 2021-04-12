@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import datetime
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,7 +27,30 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+JWT_AUTH = { # 추가
+   'JWT_SECRET_KEY': SECRET_KEY,
+   'JWT_ALGORITHM': 'HS256',
+   'JWT_VERIFY_EXPIRATION' : True, #토큰검증
+   'JWT_ALLOW_REFRESH': True, #유효기간이 지나면 새로운 토큰반환의 refresh
+   'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=30),  # Access Token의 만료 시간
+   'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=3), # Refresh Token의 만료 시간
+   'JWT_RESPONSE_PAYLOAD_HANDLER': 'api.custom_responses.my_jwt_response_handler'
+}
 
+INSTALLED_APPS = [
+    'corsheaders.middleware.CorsMiddleware',  # 추가
+    'django.middleware.common.CommonMiddleware',  # 추가
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'user', # 추가
+    'rest_framework', # 추가
+    'rest_framework_jwt', # 추가
+    'corsheaders', # 추가
+]
 # Application definition
 
 INSTALLED_APPS = [
@@ -110,7 +133,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul' # 후에 작성한 게시물에 날짜를 표현하기 위해서
 
 USE_I18N = True
 
