@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import datetime
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -19,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-upb+7k)0i&6k#@$rcx*m5*u^+^4*92lze+v3+=eblyn&2=4p8-'
+SECRET_KEY = 'django-insecure-3_2z^leuroawt1c5*8*f%!k&2(=f!_=ys_8=h9ql10u+y7-mop'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -28,11 +29,30 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # 개발자가 관리하는 파일들
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 사용자가 업로드한 파일 관리
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'xt!de@_*w0!y*@x!bqsb6%zr*tmhh+z2qjoaqwru4vq1@-d-fa'
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+ALLOWED_HOSTS = []
+
 APPEND_SLASH = False  # 추가 안해줄시 기본값이 True인데 그 경우 urls.py에서 경로설정시 주소 끝에 /를 붙이고
 # 해당경로로 /를 붙이지 않고 접속시 페이지를 찾을 수 없기때문에 리다이렉트를 시켜 자동으로 /를 붙여서 경로를 찾는다.
 # 이 경우 문제가 될 수 있기때문에 false로 값을 지정해줬다.
 
-CORS_ORIGIN_WHITELIST = ['http://localhost:3000']  # 아까 설치한 corsheaders로 해당 서버와 연결할 서버의 url을 작성해준모습
+CORS_ORIGIN_ALLOW_ALL = True  # 아까 설치한 corsheaders로 해당 서버와 연결할 서버의 url을 작성해준모습
 
 # Application definition
 
@@ -63,10 +83,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'person', # 추가
-    'book', # 추가
-    'communication', # 추가
-    'menubar', # 추가
     'user',  # 추가
     'rest_framework',  # 추가
     'rest_framework_jwt',  # 추가
@@ -142,13 +158,14 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
+
+USE_TZ = False  #Use_TZ를 false로 설정해서 우리나라 시간을 가져온 모습이다.
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
