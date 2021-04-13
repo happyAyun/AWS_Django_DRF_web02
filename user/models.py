@@ -14,14 +14,8 @@ class Member(models.Model):
     email = models.EmailField(max_length=50)
     name = models.CharField(max_length=50)
     nickname = models.CharField(max_length=50)
-
-
-class Member_Profile(models.Model):
-    objects = models.Manager()
-    profile_id = models.AutoField(primary_key=True)
-    profile_info = models.TextField()
-    profile_img = models.CharField(max_length=250)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile_info = models.TextField(null=True)
+    profile_img = models.CharField(null=True, max_length=250)
 
 
 @receiver(post_save, sender=User)
