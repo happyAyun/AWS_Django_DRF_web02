@@ -10,8 +10,8 @@ from django.db import models
 #     communication_content = models.TextField()
 #     communication_img = models.CharField(max_length=250)
 #     communication_date = models.DateTimeField(auto_now=True)
-#     communication_views = models.IntegerField(max_length=1000)
-#     communication_category = models.IntegerField(max_lenth=10)
+#     communication_views = models.IntegerField(default=0)
+#     communication_category = models.IntegerField(max_length=10)
 #     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 #
 # class Communication_Comment(models.Model):
