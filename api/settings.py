@@ -63,7 +63,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'person',
+    'person', # 추가
+    'book', # 추가
+    'communication', # 추가
+    'menubar', # 추가
     'user',  # 추가
     'rest_framework',  # 추가
     'rest_framework_jwt',  # 추가
