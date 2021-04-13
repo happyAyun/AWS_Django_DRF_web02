@@ -9,7 +9,7 @@ class Memo(models.Model):
     memo_title = models.CharField(max_length=250)
     memo_content = models.TextField()
     memo_date = models.DateTimeField(auto_now=True)
-    memo_img = models.CharField(max_length=250)
+    memo_img = models.CharField(max_length=250, null=True)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     article_id = models.ForeignKey(Book_Article, on_delete=models.CASCADE)
     book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
@@ -19,7 +19,7 @@ class QnA(models.Model):
     qna_id = models.AutoField(primary_key=True)
     qna_title = models.CharField(max_length=250)
     qna_content = models.TextField()
-    qna_img = models.CharField(max_length=250)
+    qna_img = models.CharField(max_length=250, null=True)
     book_num = models.ForeignKey(Book, on_delete=models.CASCADE)
 
 
