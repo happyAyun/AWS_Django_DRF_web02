@@ -11,7 +11,7 @@ class Profile(models.Model):
     user_pk = models.IntegerField(blank=True)
     email = models.EmailField(max_length=500, blank=True)
     nickname = models.CharField(max_length=200, blank=True)
-    photo = models.ImageField(upload_to="profile/image", default='red.jpg')
+    photo = models.ImageField(upload_to="profile/image", default='empty.jpg')
     myInfo = models.CharField(max_length=150, blank=True)
 
 
