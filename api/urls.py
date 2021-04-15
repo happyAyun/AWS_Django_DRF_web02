@@ -30,6 +30,7 @@ urlpatterns = [
     path('refresh/', refresh_jwt_token),
 
     path('user/', include('user.urls')),
+    path('api/community/', include('community.urls')),
 ]
 urlpatterns += \
     static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
