@@ -84,6 +84,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'user',  # 추가
+    'community',
     'rest_framework',  # 추가
     'rest_framework_jwt',  # 추가
     'corsheaders',  # 추가
