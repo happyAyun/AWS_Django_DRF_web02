@@ -13,7 +13,7 @@ class Book(models.Model):
     book_publisher = models.CharField(max_length=50, null=True)
     book_img = models.CharField(max_length=250, null=True)
     book_subscribe = models.IntegerField(default=0)
-    user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(Profile, on_delete=models.SET_DEFAULT, default='bookshelf')
 
 
 class Book_Article(models.Model):

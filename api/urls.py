@@ -31,6 +31,8 @@ urlpatterns = [
 
     path('user/', include('user.urls')),
     path('api/community/', include('community.urls')),
+    path('api/book/', include('book.urls')),
+    path('api/menubar/', include('menubar.urls')),
 ]
 urlpatterns += \
     static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

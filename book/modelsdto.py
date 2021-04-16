@@ -1,14 +1,18 @@
 from rest_framework import serializers
-from .models import Communication, Communication_Comment
+from .models import Book, Book_Article, Bookmark
 
-class CommunicationSerializer(serializers.HyperlinkedModelSerializer) :
+class BookSerializer(serializers.HyperlinkedModelSerializer) :
     class Meta:
-        model = Communication
-        fields = ['communication_id', 'communication_title', 'communication_content', 'communication_img', 'communication_date', 'communication_views', 'communication_category']
+        model = Book
+        fields = ['book_id', 'book_title', 'book_content', 'book_writter', 'book_intro', 'book_like', 'book_publisher', 'book_img', 'book_subscribe', 'user_id']
 
 
-
-class Communication_CommentSerializer(serializers.HyperlinkedModelSerializer) :
+class Book_ArticleSerializer(serializers.HyperlinkedModelSerializer) :
     class Meta:
-        model = Communication_Comment
-        fields = ['comment_id', 'comment_content', 'communication_id']
+        model = Book_Article
+        fields = ['article_id', 'article_title', 'article_content', 'article_img', 'article_date', 'article_views', 'book_id']
+
+class BookmarkSerializer(serializers.HyperlinkedModelSerializer) :
+    class Meta:
+        model = Bookmark
+        fields = ['bookmark_id', 'user_id', 'book_id', 'article_id']
