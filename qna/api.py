@@ -40,3 +40,41 @@ def QnADelete(request, pk):
     qna = QnA.objects.get(qna_id=pk)
     qna.delete()
     return Response('Deleted')
+
+
+@api_view(['GET'])
+def ReplyList(request):
+    replies = QnA_Reply.objects.all()
+    serializer = QnA_ReplySerializer(replies, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def ReplyDetail(request, pk):
+    reply = QnA_Reply.objects.get(reply_id=pk)
+    serializer = QnA_ReplySerializer(reply, many=False)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def ReplyCreate(request):
+    serializer = QnA_ReplySerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+
+@api_view(['PUT'])
+def ReplyUpdate(request, pk):
+    reply = QnA_Reply.objects.get(reply_id=pk)
+    serializer = QnA_ReplySerializer(instance=reply, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+
+@api_view(['DELETE'])
+def ReplyDelete(request, pk):
+    reply = QnA_Reply.objects.get(reply_id=pk)
+    reply.delete()
+    return Response('Deleted')

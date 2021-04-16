@@ -11,4 +11,10 @@ urlpatterns = [
     path('article/detail/<str:pk>/', api.Book_ArticleDetail, name="Book_ArticleDetail"),
     path('article/create/', api.Book_ArticleCreate, name="Book_ArticleCreate"),
     path('article/update/<str:pk>/', api.Book_ArticleUpdate, name='Book_ArticleUpdate'),
+
+    path('bookmark/', api.BookmarkList, name="BookmarkList"),
+    path('bookmark/detail/<str:pk>/', api.BookmarkDetail, name="BookmarkDetail"),
+    path('bookmark/create/', api.BookmarkCreate, name="BookmarkCreate"),
+    path('bookmark/update/<str:pk>/', api.BookmarkUpdate, name='BookmarkUpdate'),
+    path('bookmark/delete/<str:pk>/', api.BookmarkDelete, name='BookmarkDelete'),
 ]

@@ -35,7 +35,6 @@ def BookUpdate(request, pk):
     return Response(serializer.data)
 
 
-
 @api_view(['GET'])
 def Book_ArticleList(request):
     bookArticles = Book_Article.objects.all()
@@ -65,3 +64,42 @@ def Book_ArticleUpdate(request, pk):
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
+
+
+@api_view(['GET'])
+def BookmarkList(request):
+    bookmarks = Bookmark.objects.all()
+    serializer = BookmarkSerializer(bookmarks, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def BookmarkDetail(request, pk):
+    bookmark = Bookmark.objects.get(bookmark_id=pk)
+    serializer = BookmarkSerializer(bookmark, many=False)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def BookmarkCreate(request):
+    serializer = BookmarkSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+
+@api_view(['PUT'])
+def BookmarkUpdate(request, pk):
+    bookmark = Bookmark.objects.get(bookmark_id=pk)
+    serializer = BookmarkSerializer(instance=bookmark, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+
+@api_view(['DELETE'])
+def BookmarkDelete(request, pk):
+    bookmark = Bookmark.objects.get(bookmark_id=pk)
+    bookmark.delete()
+    return Response('Deleted')
+
