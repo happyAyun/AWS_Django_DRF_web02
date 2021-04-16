@@ -1,6 +1,7 @@
 from django.db import models
 from user.models import Profile
 
+
 class Communication(models.Model):
     objects = models.Manager()
     communication_id = models.AutoField(primary_key=True)
@@ -11,6 +12,7 @@ class Communication(models.Model):
     communication_views = models.IntegerField(default=0)
     communication_category = models.IntegerField()
     user_pk = models.ForeignKey(Profile, on_delete=models.CASCADE)
+
 
 class Communication_Comment(models.Model):
     objects = models.Manager()
