@@ -85,6 +85,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user',  # 추가
     'community',
+    'book',
     'rest_framework',  # 추가
     'rest_framework_jwt',  # 추가
     'corsheaders',  # 추가
