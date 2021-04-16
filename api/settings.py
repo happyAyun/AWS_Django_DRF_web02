@@ -58,7 +58,7 @@ CORS_ORIGIN_ALLOW_ALL = True  # 아까 설치한 corsheaders로 해당 서버와
 
 REST_FRAMEWORK = {  # 추가
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',  # 인증된 회원만 액세스 허용
+        # 'rest_framework.permissions.IsAuthenticated',  # 인증된 회원만 액세스 허용
         'rest_framework.permissions.AllowAny',  # 모든 회원 액세스 허용
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (  # api가 실행됬을 때 인증할 클래스를 정의해주는데 우리는 JWT를 쓰기로 했으니
@@ -84,6 +84,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'user',  # 추가
+    'community',
+    'book',
+    'menubar',
     'rest_framework',  # 추가
     'rest_framework_jwt',  # 추가
     'corsheaders',  # 추가
