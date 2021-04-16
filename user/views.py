@@ -33,5 +33,4 @@ class UserList(APIView):
 class ProfileUpdateAPI(generics.UpdateAPIView):
     lookup_field = "user_pk"
     queryset = Profile.objects.all()
-    print(queryset)
     serializer_class = ProfileSerializer

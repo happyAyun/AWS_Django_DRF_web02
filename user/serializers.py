@@ -3,15 +3,14 @@ from rest_framework_jwt.settings import api_settings
 from django.contrib.auth.models import User
 from .models import Profile
 
-class UserSerializer(serializers.ModelSerializer):
 
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('username', 'email', 'id')
 
 
 class UserSerializerWithToken(serializers.ModelSerializer):
-
     token = serializers.SerializerMethodField()
     password = serializers.CharField(write_only=True)
 
@@ -35,8 +34,9 @@ class UserSerializerWithToken(serializers.ModelSerializer):
         model = User
         fields = ('token', 'username', 'first_name', 'last_name', 'email', 'password')
 
-#profile
+
+# profile
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ('id', 'user_pk', 'email', 'nickname', 'user', 'photo', 'mygit', 'myInfo')
+        fields = ('id', 'user_pk', 'email', 'nickname', 'user', 'photo', 'myInfo')
