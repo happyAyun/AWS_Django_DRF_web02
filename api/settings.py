@@ -86,7 +86,8 @@ INSTALLED_APPS = [
     'user',  # 추가
     'community',
     'book',
-    'menubar',
+    'memo',
+    'qna',
     'rest_framework',  # 추가
     'rest_framework_jwt',  # 추가
     'corsheaders',  # 추가
