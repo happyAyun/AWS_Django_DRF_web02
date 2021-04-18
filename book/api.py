@@ -1,14 +1,21 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Book, Book_Article, Bookmark
-from .modelsdto import BookSerializer, Book_ArticleSerializer, BookmarkSerializer
-
+from .modelsdto import BookSerializer, Book_ArticleSerializer, BookmarkSerializer, BookProfile
 
 @api_view(['GET'])
 def BookList(request):
-    books = Book.objects.all()
-    serializer = BookSerializer(books, many=True)
+    print(request)
+    books = Book.objects.values('book_title', 'book_writter','book_intro')
+    print(books)
+    serializer = BookProfile(books,  many=True, context={'request': request})
     return Response(serializer.data)
+
+# @api_view(['GET'])
+# def BookList(request):
+#     books = Book.objects.all()
+#     serializer = BookSerializer(books, many=True)
+#     return Response(serializer.data)
 
 
 @api_view(['GET'])

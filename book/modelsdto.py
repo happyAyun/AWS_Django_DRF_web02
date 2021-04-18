@@ -20,3 +20,9 @@ class BookmarkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bookmark
         fields = ['bookmark_id', 'user_id', 'book_id', 'article_id']
+
+
+class BookProfile(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Book
+        fields = ('book_id', 'book_title', 'book_writter', 'book_intro')
