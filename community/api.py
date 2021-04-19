@@ -1,13 +1,13 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Communication, Communication_Comment
-from .modelsdto import CommunicationSerializer, Communication_CommentSerializer
+from .modelsdto import CommunicationSerializer, Communication_CommentSerializer, CommunicationListSerializer
 
 
 @api_view(['GET'])
 def CommunicationList(request):
-    communications = Communication.objects.values('communication_id')
-    serializer = CommunicationSerializer(communications, many=True)
+    communications = Communication.objects.all()
+    serializer = CommunicationListSerializer(communications, many=True)
     return Response(serializer.data)
 
 
@@ -72,3 +72,9 @@ def CommentDelete(request, pk):
     comment = Communication_Comment.objects.get(communication_id=pk)
     comment.delete()
     return Response('Deleted')
+
+@api_view(['GET'])
+def MyCommunicationList(request, pk):
+    communications = Communication.objects.all().filter(user_id=pk)
+    serializer = CommunicationListSerializer(communications, many=True)
+    return Response(serializer.data)

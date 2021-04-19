@@ -11,7 +11,7 @@ class Communication(models.Model):
     communication_date = models.DateTimeField(auto_now=True)
     communication_views = models.IntegerField(default=0)
     communication_category = models.IntegerField()
-    user_pk = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
 
 class Communication_Comment(models.Model):
