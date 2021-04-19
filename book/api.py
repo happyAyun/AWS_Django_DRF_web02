@@ -111,3 +111,8 @@ def BookmarkDelete(request, pk):
     bookmark.delete()
     return Response('Deleted')
 
+@api_view(['GET'])
+def Book_ArticleAllList(request):
+    bookArticles = Book_Article.objects.all()
+    serializer = Book_ArticleListSerializer(bookArticles, many=True)
+    return Response(serializer.data)
