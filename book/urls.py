@@ -3,11 +3,12 @@ from . import api
 
 urlpatterns = [
     path('', api.BookList, name="BookList"),
+    path('mybooklist/<str:pk>/', api.MyBookList, name="myBookList"),
     path('detail/<str:pk>/', api.BookDetail, name="BookDetail"),
     path('create/', api.BookCreate, name="BookCreate"),
     path('update/<str:pk>/', api.BookUpdate, name='BookUpdate'),
 
-    path('article/', api.Book_ArticleList, name="Book_ArticleList"),
+    path('article/<str:pk>/', api.Book_ArticleList, name="Book_ArticleList"),
     path('article/detail/<str:pk>/', api.Book_ArticleDetail, name="Book_ArticleDetail"),
     path('article/create/', api.Book_ArticleCreate, name="Book_ArticleCreate"),
     path('article/update/<str:pk>/', api.Book_ArticleUpdate, name='Book_ArticleUpdate'),

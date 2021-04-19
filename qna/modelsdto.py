@@ -12,3 +12,8 @@ class QnA_ReplySerializer(serializers.ModelSerializer):
     class Meta:
         model = QnA_Reply
         fields = ['reply_id', 'reply_content', 'qna_id']
+
+class QnAListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = QnA
+        fields = ['qna_id', 'qna_title']

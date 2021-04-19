@@ -13,6 +13,11 @@ def BookList(request):
     serializer = BookProfile(books,  many=True, context={'request': request})
     return Response(serializer.data)
 
+@api_view(['GET'])
+def MyBookList(request, pk):
+    books = Book.objects.get(user_id=pk)
+    serializer = BookProfile(books,  many=True)
+    return Response(serializer.data)
 
 @api_view(['GET'])
 def BookDetail(request, pk):
@@ -39,8 +44,8 @@ def BookUpdate(request, pk):
 
 
 @api_view(['GET'])
-def Book_ArticleList(request):
-    bookArticles = Book_Article.objects.all()
+def Book_ArticleList(request, pk):
+    bookArticles = Book_Article.objects.get(book_id=pk)
     serializer = Book_ArticleListSerializer(bookArticles, many=True)
     return Response(serializer.data)
 
