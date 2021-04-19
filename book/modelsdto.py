@@ -26,3 +26,26 @@ class BookProfile(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Book
         fields = ('book_id', 'book_title', 'book_writter', 'book_intro')
+
+
+class BookUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book
+        fields = ['book_id', 'book_title', 'book_content', 'book_writter', 'book_intro',
+                  'book_publisher', 'book_img']
+
+class Book_ArticleListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book_Article
+        fields = ['article_id', 'article_title']
+
+
+class Book_ArticleUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book_Article
+        fields = ['article_id', 'article_title', 'article_content', 'article_img']
+
+class BookmarkListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Bookmark
+        fields = ['bookmark_id', 'book_id', 'article_id']

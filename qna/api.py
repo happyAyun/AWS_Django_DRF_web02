@@ -5,11 +5,16 @@ from .modelsdto import QnASerializer, QnA_ReplySerializer
 
 
 @api_view(['GET'])
-def QnAList(request):
-    qnas = QnA.objects.all()
+def QnAList(request, pk):
+    qnas = QnA.objects.get(book_id=pk)
     serializer = QnASerializer(qnas, many=True)
     return Response(serializer.data)
 
+@api_view(['GET'])
+def QnAMyList(request, pk):
+    qnas = QnA.objects.get(user_id=pk)
+    serializer = QnASerializer(qnas, many=True)
+    return Response(serializer.data)
 
 @api_view(['GET'])
 def QnADetail(request, pk):
@@ -43,8 +48,8 @@ def QnADelete(request, pk):
 
 
 @api_view(['GET'])
-def ReplyList(request):
-    replies = QnA_Reply.objects.all()
+def ReplyList(request,pk):
+    replies = QnA_Reply.objects.get(qna_id=pk)
     serializer = QnA_ReplySerializer(replies, many=True)
     return Response(serializer.data)
 
