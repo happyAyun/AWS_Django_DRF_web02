@@ -1,21 +1,17 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Book, Book_Article, Bookmark
-from .modelsdto import BookSerializer, Book_ArticleSerializer, BookmarkSerializer, BookProfile
+from .modelsdto import BookSerializer, Book_ArticleSerializer, BookmarkSerializer, \
+    BookProfile, BookUpdateSerializer, Book_ArticleListSerializer, Book_ArticleUpdateSerializer, \
+    BookmarkListSerializer
 
 @api_view(['GET'])
 def BookList(request):
     print(request)
-    books = Book.objects.values('book_title', 'book_writter','book_intro')
+    books = Book.objects.values('book_title', 'book_writter', 'book_intro')
     print(books)
     serializer = BookProfile(books,  many=True, context={'request': request})
     return Response(serializer.data)
-
-# @api_view(['GET'])
-# def BookList(request):
-#     books = Book.objects.all()
-#     serializer = BookSerializer(books, many=True)
-#     return Response(serializer.data)
 
 
 @api_view(['GET'])
@@ -36,7 +32,7 @@ def BookCreate(request):
 @api_view(['PUT'])
 def BookUpdate(request, pk):
     book = Book.objects.get(book_id=pk)
-    serializer = BookSerializer(instance=book, data=request.data)
+    serializer = BookUpdateSerializer(instance=book, data=request.data)
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
@@ -45,7 +41,7 @@ def BookUpdate(request, pk):
 @api_view(['GET'])
 def Book_ArticleList(request):
     bookArticles = Book_Article.objects.all()
-    serializer = Book_ArticleSerializer(bookArticles, many=True)
+    serializer = Book_ArticleListSerializer(bookArticles, many=True)
     return Response(serializer.data)
 
 
@@ -67,7 +63,7 @@ def Book_ArticleCreate(request):
 @api_view(['PUT'])
 def Book_ArticleUpdate(request, pk):
     bookArticle = Book_Article.objects.get(article_id=pk)
-    serializer = Book_ArticleSerializer(instance=bookArticle, data=request.data)
+    serializer = Book_ArticleUpdateSerializer(instance=bookArticle, data=request.data)
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
@@ -76,7 +72,7 @@ def Book_ArticleUpdate(request, pk):
 @api_view(['GET'])
 def BookmarkList(request):
     bookmarks = Bookmark.objects.all()
-    serializer = BookmarkSerializer(bookmarks, many=True)
+    serializer = BookmarkListSerializer(bookmarks, many=True)
     return Response(serializer.data)
 
 
