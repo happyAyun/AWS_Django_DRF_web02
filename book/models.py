@@ -33,3 +33,9 @@ class Bookmark(models.Model):
     user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
     book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
     article_id = models.ForeignKey(Book_Article, on_delete=models.CASCADE)
+
+
+class SignBook(models.Model):
+    objects = models.Manager()
+    book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
