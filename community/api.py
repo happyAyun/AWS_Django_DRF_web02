@@ -6,7 +6,9 @@ from .modelsdto import CommunicationSerializer, Communication_CommentSerializer,
 
 @api_view(['GET'])
 def CommunicationList(request):
+    print("api/community called")
     communications = Communication.objects.all()
+    print(communications)
     serializer = CommunicationListSerializer(communications, many=True)
     return Response(serializer.data)
 

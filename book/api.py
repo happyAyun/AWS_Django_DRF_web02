@@ -7,9 +7,7 @@ from .modelsdto import BookSerializer, Book_ArticleSerializer, BookmarkSerialize
 
 @api_view(['GET'])
 def BookList(request):
-    print(request)
-    books = Book.objects.values('book_title', 'book_writter', 'book_intro')
-    print(books)
+    books = Book.objects.all()
     serializer = BookProfile(books,  many=True, context={'request': request})
     return Response(serializer.data)
 
@@ -58,8 +56,11 @@ def Book_ArticleDetail(request, pk):
 
 
 @api_view(['POST'])
-def Book_ArticleCreate(request):
+def Book_ArticleCreate(request, pk):
+    # book_id = pk
+    # print(book_id)
     serializer = Book_ArticleSerializer(data=request.data)
+    print(request.data)
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
@@ -111,8 +112,3 @@ def BookmarkDelete(request, pk):
     bookmark.delete()
     return Response('Deleted')
 
-@api_view(['GET'])
-def Book_ArticleAllList(request):
-    bookArticles = Book_Article.objects.all()
-    serializer = Book_ArticleListSerializer(bookArticles, many=True)
-    return Response(serializer.data)
