@@ -46,3 +46,9 @@ class MyProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ('user_pk', 'nickname', 'photo', 'myInfo')
+
+
+class MyProfileEditSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ('user_pk', 'nickname', 'photo', 'myInfo')
