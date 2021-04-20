@@ -18,4 +18,6 @@ urlpatterns = [
     path('bookmark/create/', api.BookmarkCreate, name="BookmarkCreate"),
     path('bookmark/update/<str:pk>/', api.BookmarkUpdate, name='BookmarkUpdate'),
     path('bookmark/delete/<str:pk>/', api.BookmarkDelete, name='BookmarkDelete'),
+
+    path('signbook/', api.SignBookList, name='SignBookList'),
 ]
