@@ -6,7 +6,6 @@ class Book(models.Model):
     objects = models.Manager()
     book_id = models.AutoField(primary_key=True)
     book_title = models.CharField(max_length=250)
-    book_content = models.TextField()
     book_writter = models.CharField(max_length=50, null=True)
     book_intro = models.TextField(null=True)
     book_like = models.IntegerField(default=0)

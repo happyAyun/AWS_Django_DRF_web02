@@ -1,21 +1,24 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .models import Book, Book_Article, Bookmark
+from .models import Book, Book_Article, Bookmark, SignBook
 from .modelsdto import BookSerializer, Book_ArticleSerializer, BookmarkSerializer, \
     BookProfile, BookUpdateSerializer, Book_ArticleListSerializer, Book_ArticleUpdateSerializer, \
-    BookmarkListSerializer
+    BookmarkListSerializer, BookSignSerializer
+
 
 @api_view(['GET'])
 def BookList(request):
     books = Book.objects.all()
-    serializer = BookProfile(books,  many=True, context={'request': request})
+    serializer = BookProfile(books, many=True, context={'request': request})
     return Response(serializer.data)
+
 
 @api_view(['GET'])
 def MyBookList(request, pk):
     books = Book.objects.all().filter(user_id=pk)
-    serializer = BookProfile(books,  many=True)
+    serializer = BookProfile(books, many=True)
     return Response(serializer.data)
+
 
 @api_view(['GET'])
 def BookDetail(request, pk):
@@ -26,7 +29,7 @@ def BookDetail(request, pk):
 
 @api_view(['POST'])
 def BookCreate(request):
-    serializer = BookSerializer(data=request.data)
+    serializer = BookSerializer(data=request.data['data'])
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
@@ -57,8 +60,6 @@ def Book_ArticleDetail(request, pk):
 
 @api_view(['POST'])
 def Book_ArticleCreate(request, pk):
-    # book_id = pk
-    # print(book_id)
     serializer = Book_ArticleSerializer(data=request.data)
     print(request.data)
     if serializer.is_valid():
@@ -112,3 +113,9 @@ def BookmarkDelete(request, pk):
     bookmark.delete()
     return Response('Deleted')
 
+
+@api_view(['GET'])
+def SignBookList(request):
+    myBooks = SignBook.objects.select_related('book_id').get(user_id=request.user.id).book_id
+    serializer = BookSignSerializer(myBooks, many=True)
+    return Response(serializer.data)
