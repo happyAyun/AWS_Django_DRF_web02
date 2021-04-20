@@ -26,6 +26,13 @@ def MyProfile(request):
     return Response(serializer.data)
 
 
+@api_view(['POST'])
+def MyEditProfile(request):
+    print(request.data)
+    # serializer = MyProfileSerializer(myProfile)
+    return 0
+
+
 class UserList(APIView):
     permission_classes = (permissions.AllowAny,)
 
