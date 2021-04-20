@@ -5,17 +5,20 @@ from .modelsdto import BookSerializer, Book_ArticleSerializer, BookmarkSerialize
     BookProfile, BookUpdateSerializer, Book_ArticleListSerializer, Book_ArticleUpdateSerializer, \
     BookmarkListSerializer
 
+
 @api_view(['GET'])
 def BookList(request):
     books = Book.objects.all()
-    serializer = BookProfile(books,  many=True, context={'request': request})
+    serializer = BookProfile(books, many=True, context={'request': request})
     return Response(serializer.data)
+
 
 @api_view(['GET'])
 def MyBookList(request, pk):
     books = Book.objects.all().filter(user_id=pk)
-    serializer = BookProfile(books,  many=True)
+    serializer = BookProfile(books, many=True)
     return Response(serializer.data)
+
 
 @api_view(['GET'])
 def BookDetail(request, pk):
@@ -57,8 +60,6 @@ def Book_ArticleDetail(request, pk):
 
 @api_view(['POST'])
 def Book_ArticleCreate(request, pk):
-    # book_id = pk
-    # print(book_id)
     serializer = Book_ArticleSerializer(data=request.data)
     print(request.data)
     if serializer.is_valid():
@@ -111,4 +112,3 @@ def BookmarkDelete(request, pk):
     bookmark = Bookmark.objects.get(bookmark_id=pk)
     bookmark.delete()
     return Response('Deleted')
-
