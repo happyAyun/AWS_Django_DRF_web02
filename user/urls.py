@@ -6,5 +6,5 @@ urlpatterns = [
     path('current/', current_user),
     path("auth/profile/<int:user_pk>/update/", ProfileUpdateAPI.as_view()),
     path("myprofile/", MyProfile),
-    path("myprofile/Edit", MyEditProfile)
+    path("myprofile/Edit/", MyEditProfile)
 ]
