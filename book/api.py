@@ -6,6 +6,7 @@ from .modelsdto import BookSerializer, Book_ArticleSerializer, BookmarkSerialize
     BookmarkListSerializer, BookSignSerializer, BookIdTitleSerializer, Book_ArticleOriginSerializer
 
 
+
 @api_view(['GET'])
 def BookList(request):
     books = Book.objects.all()
