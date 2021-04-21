@@ -34,6 +34,10 @@ class BookUpdateSerializer(serializers.ModelSerializer):
         fields = ['bookId', 'bookTitle', 'bookContent', 'bookWritter', 'bookIntro',
                   'bookPublisher', 'bookImg']
 
+class Book_ArticleOriginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BookArticle
+        fields = ['articleId', 'articleTitle', 'bookId', 'articleImg', 'articleDate', 'articleViews']
 
 class Book_ArticleListSerializer(serializers.ModelSerializer):
     class Meta:

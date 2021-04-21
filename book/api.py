@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view
 from .models import Book, BookArticle, Bookmark, SignBook
 from .modelsdto import BookSerializer, Book_ArticleSerializer, BookmarkSerializer, \
     BookProfile, BookUpdateSerializer, Book_ArticleListSerializer, Book_ArticleUpdateSerializer, \
-    BookmarkListSerializer, BookSignSerializer
+    BookmarkListSerializer, BookSignSerializer, Book_ArticleOriginSerializer
 
 
 @api_view(['GET'])
@@ -43,6 +43,11 @@ def BookUpdate(request, pk):
         serializer.save()
     return Response(serializer.data)
 
+@api_view(['GET'])
+def Book_ArticleOrigin(request):
+    bookArticles = BookArticle.objects.all()
+    serializer = Book_ArticleOriginSerializer(bookArticles, many=True)
+    return Response(serializer.data)
 
 @api_view(['GET'])
 def Book_ArticleList(request, pk):
