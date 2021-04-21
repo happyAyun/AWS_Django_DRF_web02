@@ -1,10 +1,9 @@
-import json
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Book, BookArticle, Bookmark, SignBook
 from .modelsdto import BookSerializer, Book_ArticleSerializer, BookmarkSerializer, \
     BookProfile, BookUpdateSerializer, Book_ArticleListSerializer, Book_ArticleUpdateSerializer, \
-    BookmarkListSerializer, BookSignSerializer, BookIdTitleSerializer, BookCreateSerializer
+    BookmarkListSerializer, BookSignSerializer, BookIdTitleSerializer, Book_ArticleOriginSerializer
 
 
 @api_view(['GET'])
@@ -33,7 +32,8 @@ def BookCreate(request):
     print(request.data['data'])
     print(request.user.id)
 
-    serializer = Book(bookTitle=request.data['data'].bookTitle, bookWritter=request.data['data'].bookWritter, bookPublisher=request.data['data'].bookPublisher,userId=request.user.id)
+    serializer = Book(bookTitle=request.data['data'].bookTitle, bookWritter=request.data['data'].bookWritter,
+                      bookPublisher=request.data['data'].bookPublisher, userId=request.user.id)
     print(serializer)
     if serializer.is_valid():
         serializer.save()
@@ -46,6 +46,13 @@ def BookUpdate(request, pk):
     serializer = BookUpdateSerializer(instance=book, data=request.data)
     if serializer.is_valid():
         serializer.save()
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def Book_ArticleOrigin(request):
+    bookArticles = BookArticle.objects.all()
+    serializer = Book_ArticleOriginSerializer(bookArticles, many=True)
     return Response(serializer.data)
 
 
@@ -80,10 +87,11 @@ def Book_ArticleUpdate(request, pk):
         serializer.save()
     return Response(serializer.data)
 
+
 @api_view(['GET'])
 def BookIdTitle(request):
-    book=Book.objects.all().filter(book_title=request)
-    serializer= BookIdTitleSerializer(book, many=False)
+    book = Book.objects.all().filter(book_title=request)
+    serializer = BookIdTitleSerializer(book, many=False)
     return Response(serializer.data)
 
 
