@@ -4,7 +4,7 @@ from user.models import Profile
 
 class Book(models.Model):
     objects = models.Manager()
-    book_id = models.AutoField(primary_key=True)
+    bookId = models.AutoField(primary_key=True)
     bookTitle = models.CharField(max_length=250)
     bookWritter = models.CharField(max_length=50, null=True)
     bookIntro = models.TextField(null=True)

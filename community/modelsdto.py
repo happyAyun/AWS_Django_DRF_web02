@@ -5,18 +5,18 @@ from .models import Communication, CommunicationComment
 class CommunicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Communication
-        fields = ['communication_id', 'communication_title', 'communication_content', 'communication_img',
-                  'communication_date', 'communication_views', 'communication_category', 'user_id']
+        fields = ['communicationId', 'communicationTitle', 'communicationContent', 'communicationImg',
+                  'communicationDate', 'communicationViews', 'communicationCategory', 'userId']
 
 
 class Communication_CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = CommunicationComment
-        fields = ['comment_id', 'comment_content', 'communication_id']
+        fields = ['commentId', 'commentContent', 'communicationId']
 
 
 class CommunicationListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Communication
-        fields = ['communication_id', 'communication_title',
-                  'communication_date', 'communication_views', 'user_id']
+        fields = ['communicationId', 'communicationTitle',
+                  'communicationDate', 'communicationViews', 'userId']

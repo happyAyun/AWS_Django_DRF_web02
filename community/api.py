@@ -15,7 +15,7 @@ def CommunicationList(request):
 
 @api_view(['GET'])
 def CommunicationDetail(request, pk):
-    communication = Communication.objects.get(communication_id=pk)
+    communication = Communication.objects.get(communicationId=pk)
     serializer = CommunicationSerializer(communication, many=False)
     return Response(serializer.data)
 
@@ -30,7 +30,7 @@ def CommunicationCreate(request):
 
 @api_view(['PUT'])
 def CommunicationUpdate(request, pk):
-    communication = Communication.objects.get(communication_id=pk)
+    communication = Communication.objects.get(communicationId=pk)
     serializer = CommunicationSerializer(instance=communication, data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -39,7 +39,7 @@ def CommunicationUpdate(request, pk):
 
 @api_view(['DELETE'])
 def CommunicationDelete(request, pk):
-    communication = Communication.objects.get(communication_id=pk)
+    communication = Communication.objects.get(communicationId=pk)
     communication.delete()
     return Response('Deleted')
 
@@ -62,7 +62,7 @@ def CommentCreate(request):
 
 @api_view(['PUT'])
 def CommentUpdate(request, pk):
-    comment = CommunicationComment.objects.get(communication_id=pk)
+    comment = CommunicationComment.objects.get(communicationId=pk)
     serializer = Communication_CommentSerializer(instance=comment, data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -71,12 +71,12 @@ def CommentUpdate(request, pk):
 
 @api_view(['DELETE'])
 def CommentDelete(request, pk):
-    comment = CommunicationComment.objects.get(communication_id=pk)
+    comment = CommunicationComment.objects.get(communicationId=pk)
     comment.delete()
     return Response('Deleted')
 
 @api_view(['GET'])
 def MyCommunicationList(request, pk):
-    communications = Communication.objects.all().filter(user_id=pk)
+    communications = Communication.objects.all().filter(userId=pk)
     serializer = CommunicationListSerializer(communications, many=True)
     return Response(serializer.data)

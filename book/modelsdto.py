@@ -5,60 +5,61 @@ from .models import Book, BookArticle, Bookmark, SignBook
 class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
-        fields = ['book_id', 'book_title', 'book_content', 'book_writter', 'book_intro', 'book_like', 'book_publisher',
-                  'book_img', 'book_subscribe', 'user_id']
+        fields = ['bookId', 'bookTitle', 'bookContent', 'bookWritter', 'bookIntro', 'bookLike', 'bookPublisher',
+                  'bookImg', 'bookSubscribe', 'userId']
 
 
 class Book_ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = BookArticle
-        fields = ['article_id', 'article_title', 'article_content', 'article_img', 'article_date', 'article_views',
-                  'book_id']
+        fields = ['articleId', 'articleTitle', 'articleContent', 'articleImg', 'articleDate', 'articleViews',
+                  'bookId']
 
 
 class BookmarkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bookmark
-        fields = ['bookmark_id', 'user_id', 'book_id', 'article_id']
+        fields = ['bookmarkId', 'userId', 'bookId', 'articleId']
 
 
 class BookProfile(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Book
-        fields = ('book_id', 'book_title', 'book_writter', 'book_intro')
+        fields = ('bookId', 'bookTitle', 'bookWritter', 'bookIntro')
 
 
 class BookUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
-        fields = ['book_id', 'book_title', 'book_content', 'book_writter', 'book_intro',
-                  'book_publisher', 'book_img']
+        fields = ['bookId', 'bookTitle', 'bookContent', 'bookWritter', 'bookIntro',
+                  'bookPublisher', 'bookImg']
+
 
 class Book_ArticleListSerializer(serializers.ModelSerializer):
     class Meta:
         model = BookArticle
-        fields = ['article_id', 'article_title']
+        fields = ['articleId', 'articleTitle']
 
 
 class Book_ArticleUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = BookArticle
-        fields = ['article_id', 'article_title', 'article_content', 'article_img']
+        fields = ['articleId', 'articleTitle', 'articleContent', 'articleImg']
 
 
 class BookmarkListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bookmark
-        fields = ['bookmark_id', 'book_id', 'article_id']
+        fields = ['bookmarkId', 'bookId', 'articleId']
 
 
 class BookSignSerializer(serializers.ModelSerializer):
     class Meta:
         model = SignBook
-        fields = ['id', 'book_id', 'user_id']
+        fields = ['id', 'bookId', 'userId']
 
 
 class BookCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
-        fields = ['book_id', 'book_title', 'book_writter','book_publisher']
+        fields = ['bookId', 'bookTitle', 'bookWritter', 'bookPublisher']

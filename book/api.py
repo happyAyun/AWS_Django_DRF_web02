@@ -15,14 +15,14 @@ def BookList(request):
 
 @api_view(['GET'])
 def MyBookList(request, pk):
-    books = Book.objects.all().filter(user_id=pk)
+    books = Book.objects.all().filter(userId=pk)
     serializer = BookProfile(books, many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 def BookDetail(request, pk):
-    book = Book.objects.get(book_id=pk)
+    book = Book.objects.get(bookId=pk)
     serializer = BookSerializer(book, many=False)
     return Response(serializer.data)
 
@@ -37,7 +37,7 @@ def BookCreate(request):
 
 @api_view(['PUT'])
 def BookUpdate(request, pk):
-    book = Book.objects.get(book_id=pk)
+    book = Book.objects.get(bookId=pk)
     serializer = BookUpdateSerializer(instance=book, data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -46,7 +46,7 @@ def BookUpdate(request, pk):
 
 @api_view(['GET'])
 def Book_ArticleList(request, pk):
-    bookArticles = BookArticle.objects.all().filter(book_id=pk)
+    bookArticles = BookArticle.objects.all().filter(bookId=pk)
     serializer = Book_ArticleListSerializer(bookArticles, many=True)
     return Response(serializer.data)
 

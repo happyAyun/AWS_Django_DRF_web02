@@ -6,19 +6,19 @@ from .modelsdto import QnASerializer, QnA_ReplySerializer
 
 @api_view(['GET'])
 def QnAList(request, pk):
-    qnas = QnA.objects.get(book_id=pk)
+    qnas = QnA.objects.get(bookId=pk)
     serializer = QnASerializer(qnas, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
 def QnAMyList(request, pk):
-    qnas = QnA.objects.get(user_id=pk)
+    qnas = QnA.objects.get(userId=pk)
     serializer = QnASerializer(qnas, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
 def QnADetail(request, pk):
-    qna = QnA.objects.get(qna_id=pk)
+    qna = QnA.objects.get(qnaId=pk)
     serializer = QnASerializer(qna, many=False)
     return Response(serializer.data)
 
@@ -33,7 +33,7 @@ def QnACreate(request):
 
 @api_view(['PUT'])
 def QnAUpdate(request, pk):
-    qna = QnA.objects.get(qna_id=pk)
+    qna = QnA.objects.get(qnaId=pk)
     serializer = QnASerializer(instance=qna, data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -42,21 +42,21 @@ def QnAUpdate(request, pk):
 
 @api_view(['DELETE'])
 def QnADelete(request, pk):
-    qna = QnA.objects.get(qna_id=pk)
+    qna = QnA.objects.get(qnaId=pk)
     qna.delete()
     return Response('Deleted')
 
 
 @api_view(['GET'])
 def ReplyList(request,pk):
-    replies = QnA_Reply.objects.get(qna_id=pk)
+    replies = QnA_Reply.objects.get(qnaId=pk)
     serializer = QnA_ReplySerializer(replies, many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 def ReplyDetail(request, pk):
-    reply = QnA_Reply.objects.get(reply_id=pk)
+    reply = QnA_Reply.objects.get(replyId=pk)
     serializer = QnA_ReplySerializer(reply, many=False)
     return Response(serializer.data)
 
@@ -71,7 +71,7 @@ def ReplyCreate(request):
 
 @api_view(['PUT'])
 def ReplyUpdate(request, pk):
-    reply = QnA_Reply.objects.get(reply_id=pk)
+    reply = QnA_Reply.objects.get(replyId=pk)
     serializer = QnA_ReplySerializer(instance=reply, data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -80,6 +80,6 @@ def ReplyUpdate(request, pk):
 
 @api_view(['DELETE'])
 def ReplyDelete(request, pk):
-    reply = QnA_Reply.objects.get(reply_id=pk)
+    reply = QnA_Reply.objects.get(replyId=pk)
     reply.delete()
     return Response('Deleted')

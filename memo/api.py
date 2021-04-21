@@ -13,7 +13,7 @@ def MemoList(request):
 
 @api_view(['GET'])
 def MemoDetail(request, pk):
-    memo = Memo.objects.get(memo_id=pk)
+    memo = Memo.objects.get(memoId=pk)
     serializer = MemoSerializer(memo, many=False)
     return Response(serializer.data)
 
@@ -28,7 +28,7 @@ def MemoCreate(request):
 
 @api_view(['PUT'])
 def MemoUpdate(request, pk):
-    memo = Memo.objects.get(memo_id=pk)
+    memo = Memo.objects.get(memoId=pk)
     serializer = MemoSerializer(instance=memo, data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -37,6 +37,6 @@ def MemoUpdate(request, pk):
 
 @api_view(['DELETE'])
 def MemoDelete(request, pk):
-    memo = Memo.objects.get(memo_id=pk)
+    memo = Memo.objects.get(memoId=pk)
     memo.delete()
     return Response('Deleted')

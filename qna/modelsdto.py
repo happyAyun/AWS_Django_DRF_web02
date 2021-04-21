@@ -5,15 +5,16 @@ from .models import QnA, QnA_Reply
 class QnASerializer(serializers.ModelSerializer):
     class Meta:
         model = QnA
-        fields = ['qna_id', 'qna_title', 'qna_content', 'qna_img', 'book_id']
+        fields = ['qnaId', 'qnaTitle', 'qnaContent', 'qnaImg', 'bookId']
 
 
 class QnA_ReplySerializer(serializers.ModelSerializer):
     class Meta:
         model = QnA_Reply
-        fields = ['reply_id', 'reply_content', 'qna_id']
+        fields = ['replyId', 'replyContent', 'qnaId']
+
 
 class QnAListSerializer(serializers.ModelSerializer):
     class Meta:
         model = QnA
-        fields = ['qna_id', 'qna_title']
+        fields = ['qnaId', 'qnaTitle']
