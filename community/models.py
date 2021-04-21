@@ -4,18 +4,18 @@ from user.models import Profile
 
 class Communication(models.Model):
     objects = models.Manager()
-    communication_id = models.AutoField(primary_key=True)
-    communication_title = models.CharField(max_length=250)
-    communication_content = models.TextField()
-    communication_img = models.CharField(max_length=250, null=True)
-    communication_date = models.DateTimeField(auto_now=True)
-    communication_views = models.IntegerField(default=0)
-    communication_category = models.IntegerField()
-    user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    communicationId = models.AutoField(primary_key=True)
+    communicationTitle = models.CharField(max_length=250)
+    communicationContent = models.TextField()
+    communicationImg = models.CharField(max_length=250, null=True)
+    communicationDate = models.DateTimeField(auto_now=True)
+    communicationViews = models.IntegerField(default=0)
+    communicationCategory = models.IntegerField()
+    userId = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
 
-class Communication_Comment(models.Model):
+class CommunicationComment(models.Model):
     objects = models.Manager()
-    comment_id = models.AutoField(primary_key=True)
-    comment_content = models.TextField()
-    communication_id = models.ForeignKey(Communication, on_delete=models.CASCADE)
+    commentId = models.AutoField(primary_key=True)
+    commentContent = models.TextField()
+    communicationId = models.ForeignKey(Communication, on_delete=models.CASCADE)

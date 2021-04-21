@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Communication, Communication_Comment
+from .models import Communication, CommunicationComment
 
 
 class CommunicationSerializer(serializers.ModelSerializer):
@@ -11,7 +11,7 @@ class CommunicationSerializer(serializers.ModelSerializer):
 
 class Communication_CommentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Communication_Comment
+        model = CommunicationComment
         fields = ['comment_id', 'comment_content', 'communication_id']
 
 

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Book, Book_Article, Bookmark, SignBook
+from .models import Book, BookArticle, Bookmark, SignBook
 
 
 class BookSerializer(serializers.ModelSerializer):
@@ -11,7 +11,7 @@ class BookSerializer(serializers.ModelSerializer):
 
 class Book_ArticleSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Book_Article
+        model = BookArticle
         fields = ['article_id', 'article_title', 'article_content', 'article_img', 'article_date', 'article_views',
                   'book_id']
 
@@ -36,13 +36,13 @@ class BookUpdateSerializer(serializers.ModelSerializer):
 
 class Book_ArticleListSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Book_Article
+        model = BookArticle
         fields = ['article_id', 'article_title']
 
 
 class Book_ArticleUpdateSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Book_Article
+        model = BookArticle
         fields = ['article_id', 'article_title', 'article_content', 'article_img']
 
 

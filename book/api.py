@@ -1,10 +1,9 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .models import Book, Book_Article, Bookmark, SignBook
+from .models import Book, BookArticle, Bookmark, SignBook
 from .modelsdto import BookSerializer, Book_ArticleSerializer, BookmarkSerializer, \
     BookProfile, BookUpdateSerializer, Book_ArticleListSerializer, Book_ArticleUpdateSerializer, \
     BookmarkListSerializer, BookSignSerializer
-
 
 
 @api_view(['GET'])
@@ -47,14 +46,14 @@ def BookUpdate(request, pk):
 
 @api_view(['GET'])
 def Book_ArticleList(request, pk):
-    bookArticles = Book_Article.objects.all().filter(book_id=pk)
+    bookArticles = BookArticle.objects.all().filter(book_id=pk)
     serializer = Book_ArticleListSerializer(bookArticles, many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 def Book_ArticleDetail(request, pk):
-    bookArticle = Book_Article.objects.get(article_id=pk)
+    bookArticle = BookArticle.objects.get(article_id=pk)
     serializer = Book_ArticleSerializer(bookArticle, many=False)
     return Response(serializer.data)
 
@@ -70,7 +69,7 @@ def Book_ArticleCreate(request, pk):
 
 @api_view(['PUT'])
 def Book_ArticleUpdate(request, pk):
-    bookArticle = Book_Article.objects.get(article_id=pk)
+    bookArticle = BookArticle.objects.get(article_id=pk)
     serializer = Book_ArticleUpdateSerializer(instance=bookArticle, data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -117,6 +116,7 @@ def BookmarkDelete(request, pk):
 
 @api_view(['GET'])
 def SignBookList(request):
-    myBooks = SignBook.objects.select_related('book_id').get(user_id=request.user.id).book_id
+    myBooks = Book.objects.select_related('user_id__user_id').filter(user_id_id='17')
+    print(myBooks.query)
     serializer = BookSignSerializer(myBooks, many=True)
     return Response(serializer.data)

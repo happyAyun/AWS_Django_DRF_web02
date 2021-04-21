@@ -1,6 +1,6 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .models import Communication, Communication_Comment
+from .models import Communication, CommunicationComment
 from .modelsdto import CommunicationSerializer, Communication_CommentSerializer, CommunicationListSerializer
 
 
@@ -46,7 +46,7 @@ def CommunicationDelete(request, pk):
 
 @api_view(['GET'])
 def CommentList(request):
-    comments = Communication_Comment.objects.all()
+    comments = CommunicationComment.objects.all()
     serializer = Communication_CommentSerializer(comments, many=True)
     return Response(serializer.data)
 
@@ -62,7 +62,7 @@ def CommentCreate(request):
 
 @api_view(['PUT'])
 def CommentUpdate(request, pk):
-    comment = Communication_Comment.objects.get(communication_id=pk)
+    comment = CommunicationComment.objects.get(communication_id=pk)
     serializer = Communication_CommentSerializer(instance=comment, data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -71,7 +71,7 @@ def CommentUpdate(request, pk):
 
 @api_view(['DELETE'])
 def CommentDelete(request, pk):
-    comment = Communication_Comment.objects.get(communication_id=pk)
+    comment = CommunicationComment.objects.get(communication_id=pk)
     comment.delete()
     return Response('Deleted')
 
