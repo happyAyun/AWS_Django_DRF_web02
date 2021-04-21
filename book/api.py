@@ -48,6 +48,11 @@ def BookUpdate(request, pk):
         serializer.save()
     return Response(serializer.data)
 
+@api_view(['GET'])
+def Book_ArticleOrigin(request):
+    bookArticles = BookArticle.objects.all()
+    serializer = Book_ArticleOriginSerializer(bookArticles, many=True)
+    return Response(serializer.data)
 
 @api_view(['GET'])
 def Book_ArticleList(request, pk):
