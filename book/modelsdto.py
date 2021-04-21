@@ -46,6 +46,12 @@ class Book_ArticleUpdateSerializer(serializers.ModelSerializer):
         fields = ['article_id', 'article_title', 'article_content', 'article_img']
 
 
+class Book_ArticleOriginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book_Article
+        fields = ['article_id', 'article_title', 'book_id']
+
+
 class BookmarkListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bookmark
