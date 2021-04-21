@@ -12,7 +12,7 @@ class Book(models.Model):
     bookPublisher = models.CharField(max_length=50, null=True)
     bookImg = models.CharField(max_length=250, null=True)
     bookSubscribe = models.IntegerField(default=0)
-    userId = models.ForeignKey(Profile, on_delete=models.SET_DEFAULT, default='bookshelf')
+    userId = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
 
 class BookArticle(models.Model):

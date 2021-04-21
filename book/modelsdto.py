@@ -66,4 +66,9 @@ class BookSignSerializer(serializers.ModelSerializer):
 class BookCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
-        fields = ['bookId', 'bookTitle', 'bookWritter', 'bookPublisher']
+        fields = ['bookId', 'bookTitle', 'bookWritter', 'bookPublisher','userId']
+
+class BookIdTitleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book
+        fields = ['book_id']
