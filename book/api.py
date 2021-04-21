@@ -46,6 +46,13 @@ def BookUpdate(request, pk):
 
 
 @api_view(['GET'])
+def Book_ArticleOrigin(request):
+    bookArticles = Book_Article.objects.all()
+    serializer = Book_ArticleOriginSerializer(bookArticles, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
 def Book_ArticleList(request, pk):
     bookArticles = Book_Article.objects.all().filter(book_id=pk)
     serializer = Book_ArticleListSerializer(bookArticles, many=True)
