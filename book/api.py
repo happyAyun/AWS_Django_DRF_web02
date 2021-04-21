@@ -53,7 +53,7 @@ def Book_ArticleList(request, pk):
 
 @api_view(['GET'])
 def Book_ArticleDetail(request, pk):
-    bookArticle = BookArticle.objects.get(article_id=pk)
+    bookArticle = BookArticle.objects.get(articleId=pk)
     serializer = Book_ArticleSerializer(bookArticle, many=False)
     return Response(serializer.data)
 
@@ -69,7 +69,7 @@ def Book_ArticleCreate(request, pk):
 
 @api_view(['PUT'])
 def Book_ArticleUpdate(request, pk):
-    bookArticle = BookArticle.objects.get(article_id=pk)
+    bookArticle = BookArticle.objects.get(articleId=pk)
     serializer = Book_ArticleUpdateSerializer(instance=bookArticle, data=request.data)
     if serializer.is_valid():
         serializer.save()

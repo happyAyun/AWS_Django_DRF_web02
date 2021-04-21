@@ -51,7 +51,6 @@ def CommentList(request):
     return Response(serializer.data)
 
 
-
 @api_view(['POST'])
 def CommentCreate(request):
     serializer = Communication_CommentSerializer(data=request.data)
@@ -74,6 +73,7 @@ def CommentDelete(request, pk):
     comment = CommunicationComment.objects.get(communicationId=pk)
     comment.delete()
     return Response('Deleted')
+
 
 @api_view(['GET'])
 def MyCommunicationList(request, pk):
