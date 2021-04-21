@@ -136,7 +136,7 @@ def BookmarkDelete(request, pk):
 
 @api_view(['GET'])
 def SignBookList(request):
-    myBooks = Book.objects.select_related('user_id__user_id').filter(user_id_id='17')
+    myBooks = Book.objects.select_related('userId').filter(signbook__userId_id=request.user.id)
     print(myBooks.query)
     serializer = BookSignSerializer(myBooks, many=True)
     return Response(serializer.data)
