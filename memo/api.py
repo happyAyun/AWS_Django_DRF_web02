@@ -12,6 +12,14 @@ def MemoList(request):
 
 
 @api_view(['GET'])
+def UserMemo(request, pk):
+    memos = Memo.objects.get(userId=pk)
+    serializer = MemoSerializer(memos, many=False)
+    return Response(serializer.data)
+
+
+
+@api_view(['GET'])
 def MemoDetail(request, pk):
     memo = Memo.objects.get(memoId=pk)
     serializer = MemoSerializer(memo, many=False)
@@ -20,7 +28,9 @@ def MemoDetail(request, pk):
 
 @api_view(['POST'])
 def MemoCreate(request):
-    serializer = MemoSerializer(data=request.data)
+    request.data['data']['userId'] = request.user.id
+    datas = request.data['data']
+    serializer = MemoSerializer(data=datas)
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)

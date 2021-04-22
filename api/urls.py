@@ -34,6 +34,7 @@ urlpatterns = [
     path('api/book/', include('book.urls')),
     path('api/memo/', include('memo.urls')),
     path('api/qna/', include('qna.urls')),
+    path('api/user', include('user.urls')),
 ]
 urlpatterns += \
     static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

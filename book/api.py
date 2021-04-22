@@ -3,8 +3,8 @@ from rest_framework.decorators import api_view
 from .models import Book, BookArticle, Bookmark, SignBook
 from .modelsdto import BookSerializer, Book_ArticleSerializer, BookmarkSerializer, \
     BookProfile, BookUpdateSerializer, Book_ArticleListSerializer, Book_ArticleUpdateSerializer, \
-    BookmarkListSerializer, BookSignSerializer, BookIdTitleSerializer, Book_ArticleOriginSerializer, BookCreateSerializer
-
+    BookmarkListSerializer, BookSignSerializer, BookIdTitleSerializer, Book_ArticleOriginSerializer, \
+    BookCreateSerializer
 
 
 @api_view(['GET'])
@@ -30,8 +30,8 @@ def BookDetail(request, pk):
 
 @api_view(['POST'])
 def BookCreate(request):
-    request.data['data']['userId']= request.user.id
-    serializer=request.data['data']
+    request.data['data']['userId'] = request.user.id
+    serializer = request.data['data']
     serializer = BookCreateSerializer(data=serializer)
     if serializer.is_valid():
         serializer.save()

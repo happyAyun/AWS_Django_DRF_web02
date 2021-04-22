@@ -2,7 +2,6 @@ from django.db import models
 from user.models import User
 from book.models import Book, BookArticle
 
-
 # Create your models here.
 
 class Memo(models.Model):
