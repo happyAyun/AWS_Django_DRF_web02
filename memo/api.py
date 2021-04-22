@@ -1,12 +1,14 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+
+from book.models import Book
 from .models import Memo
 from .modelsdto import MemoSerializer
 
 
 @api_view(['GET'])
 def MemoList(request):
-    memos = Memo.objects.all()
+    memos = Memo.objects.all().filter(userId=request.user.id)
     serializer = MemoSerializer(memos, many=True)
     return Response(serializer.data)
 

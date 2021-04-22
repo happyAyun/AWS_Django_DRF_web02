@@ -136,4 +136,5 @@ def SignBookList(request):
     myBooks = Book.objects.select_related('userId').filter(signbook__userId_id=request.user.id)
     print(myBooks.query)
     serializer = BookSignSerializer(myBooks, many=True)
+    print(serializer.data);
     return Response(serializer.data)

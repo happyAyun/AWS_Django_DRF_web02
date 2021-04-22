@@ -34,10 +34,12 @@ class BookUpdateSerializer(serializers.ModelSerializer):
         fields = ['bookId', 'bookTitle', 'bookContent', 'bookWritter', 'bookIntro',
                   'bookPublisher', 'bookImg']
 
+
 class Book_ArticleOriginSerializer(serializers.ModelSerializer):
     class Meta:
         model = BookArticle
         fields = ['articleId', 'articleTitle', 'bookId', 'articleImg', 'articleDate', 'articleViews']
+
 
 class Book_ArticleListSerializer(serializers.ModelSerializer):
     class Meta:
@@ -60,13 +62,14 @@ class BookmarkListSerializer(serializers.ModelSerializer):
 class BookSignSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
-        fields = ['bookTitle', 'bookIntro']
+        fields = ['bookId', 'bookTitle', 'bookWritter', 'bookImg', 'bookPublisher']
 
 
 class BookCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
-        fields = ['bookId', 'bookTitle', 'bookWritter', 'bookPublisher','userId']
+        fields = ['bookId', 'bookTitle', 'bookWritter', 'bookPublisher', 'userId']
+
 
 class BookIdTitleSerializer(serializers.ModelSerializer):
     class Meta:
