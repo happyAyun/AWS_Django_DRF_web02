@@ -42,7 +42,7 @@ class Book_ArticleOriginSerializer(serializers.ModelSerializer):
 class Book_ArticleListSerializer(serializers.ModelSerializer):
     class Meta:
         model = BookArticle
-        fields = ['articleId', 'articleTitle']
+        fields = ['articleId', 'articleTitle', 'articleImg', 'articleDate', 'articleViews']
 
 
 class Book_ArticleUpdateSerializer(serializers.ModelSerializer):
