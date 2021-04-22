@@ -3,7 +3,8 @@ from rest_framework.decorators import api_view
 from .models import Book, BookArticle, Bookmark, SignBook
 from .modelsdto import BookSerializer, Book_ArticleSerializer, BookmarkSerializer, \
     BookProfile, BookUpdateSerializer, Book_ArticleListSerializer, Book_ArticleUpdateSerializer, \
-    BookmarkListSerializer, BookSignSerializer, Book_ArticleOriginSerializer
+    BookmarkListSerializer, BookSignSerializer, BookIdTitleSerializer, Book_ArticleOriginSerializer, BookCreateSerializer
+
 
 
 @api_view(['GET'])
@@ -29,7 +30,9 @@ def BookDetail(request, pk):
 
 @api_view(['POST'])
 def BookCreate(request):
-    serializer = BookSerializer(data=request.data['data'])
+    request.data['data']['userId']= request.user.id
+    serializer=request.data['data']
+    serializer = BookCreateSerializer(data=serializer)
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
@@ -43,11 +46,13 @@ def BookUpdate(request, pk):
         serializer.save()
     return Response(serializer.data)
 
+
 @api_view(['GET'])
 def Book_ArticleOrigin(request):
     bookArticles = BookArticle.objects.all()
     serializer = Book_ArticleOriginSerializer(bookArticles, many=True)
     return Response(serializer.data)
+
 
 @api_view(['GET'])
 def Book_ArticleList(request, pk):
@@ -78,6 +83,13 @@ def Book_ArticleUpdate(request, pk):
     serializer = Book_ArticleUpdateSerializer(instance=bookArticle, data=request.data)
     if serializer.is_valid():
         serializer.save()
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def BookIdTitle(request):
+    book = Book.objects.all().filter(book_title=request)
+    serializer = BookIdTitleSerializer(book, many=False)
     return Response(serializer.data)
 
 
@@ -121,7 +133,7 @@ def BookmarkDelete(request, pk):
 
 @api_view(['GET'])
 def SignBookList(request):
-    myBooks = Book.objects.select_related('user_id__user_id').filter(user_id_id='17')
+    myBooks = Book.objects.select_related('userId').filter(signbook__userId_id=request.user.id)
     print(myBooks.query)
     serializer = BookSignSerializer(myBooks, many=True)
     return Response(serializer.data)

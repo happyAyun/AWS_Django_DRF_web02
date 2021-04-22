@@ -59,11 +59,16 @@ class BookmarkListSerializer(serializers.ModelSerializer):
 
 class BookSignSerializer(serializers.ModelSerializer):
     class Meta:
-        model = SignBook
-        fields = ['id', 'bookId', 'userId']
+        model = Book
+        fields = ['bookTitle', 'bookIntro']
 
 
 class BookCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
-        fields = ['bookId', 'bookTitle', 'bookWritter', 'bookPublisher']
+        fields = ['bookId', 'bookTitle', 'bookWritter', 'bookPublisher','userId']
+
+class BookIdTitleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book
+        fields = ['book_id']
