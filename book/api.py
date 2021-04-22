@@ -23,6 +23,7 @@ def MyBookList(request, pk):
 
 @api_view(['GET'])
 def BookDetail(request, pk):
+    print(request)
     book = Book.objects.get(bookId=pk)
     serializer = BookSerializer(book, many=False)
     return Response(serializer.data)
@@ -35,6 +36,16 @@ def BookCreate(request):
     serializer = BookCreateSerializer(data=serializer)
     if serializer.is_valid():
         serializer.save()
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def Book_ArticleCreate(request, pk):
+
+    for i in range(len(request.data['data'])):
+        serializer = Book_ArticleSerializer(data=request.data['data'][i])
+        if serializer.is_valid():
+            serializer.save()
+
     return Response(serializer.data)
 
 
@@ -68,13 +79,7 @@ def Book_ArticleDetail(request, pk):
     return Response(serializer.data)
 
 
-@api_view(['POST'])
-def Book_ArticleCreate(request, pk):
-    serializer = Book_ArticleSerializer(data=request.data)
-    print(request.data)
-    if serializer.is_valid():
-        serializer.save()
-    return Response(serializer.data)
+
 
 
 @api_view(['PUT'])
