@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Memo
-from .modelsdto import MemoSerializer
+from .modelsdto import MemoSerializer, MemoCreateSerializer
 
 
 @api_view(['GET'])
@@ -13,8 +13,9 @@ def MemoList(request):
 
 @api_view(['GET'])
 def UserMemo(request, pk):
-    memos = Memo.objects.get(userId=pk)
-    serializer = MemoSerializer(memos, many=False)
+    memos = Memo.objects.all().filter(bookId=pk)
+    momo = memos.get(userId=request.user.id)
+    serializer = MemoSerializer(momo, many=False)
     return Response(serializer.data)
 
 
@@ -29,8 +30,9 @@ def MemoDetail(request, pk):
 @api_view(['POST'])
 def MemoCreate(request):
     request.data['data']['userId'] = request.user.id
-    datas = request.data['data']
-    serializer = MemoSerializer(data=datas)
+    serializer = request.data['data']
+    print(serializer)
+    serializer = MemoSerializer(data=serializer)
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)

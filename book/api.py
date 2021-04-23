@@ -33,8 +33,9 @@ def BookDetail(request, pk):
 def BookCreate(request):
     request.data['data']['userId'] = request.user.id
     serializer = request.data['data']
+    print(serializer)
     serializer = BookCreateSerializer(data=serializer)
-    if serializer.is_valid():
+    if (serializer.is_valid()):
         serializer.save()
     return Response(serializer.data)
 
