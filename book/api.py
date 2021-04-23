@@ -35,13 +35,10 @@ def BookCreate(request):
     request.data['bookMakeList']['bookImg'] = request.data['BookImg']
     serializer = request.data['bookMakeList']
     serializer = BookCreateSerializer(data=serializer)
-<<<<<<< HEAD
     if serializer.is_valid():
         serializer.save()
-=======
-    serializer.save()
     print("save")
->>>>>>> 5cc4ba8e9a78d5bf3c0e30715a9e6a36c4cfb151
+
     return Response(serializer.data)
 
 
