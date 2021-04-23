@@ -6,7 +6,7 @@ from .modelsdto import MemoSerializer, MemoCreateSerializer
 
 @api_view(['GET'])
 def MemoList(request):
-    memos = Memo.objects.all()
+    memos = Memo.objects.all().filter(userId=request.user.id)
     serializer = MemoSerializer(memos, many=True)
     return Response(serializer.data)
 
