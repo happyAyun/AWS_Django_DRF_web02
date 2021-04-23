@@ -13,5 +13,4 @@ class Memo(models.Model):
     memoDate = models.DateTimeField(auto_now=True)
     memoImg = models.CharField(max_length=250, null=True)
     userId = models.ForeignKey(User, on_delete=models.CASCADE)
-    articleId = models.ForeignKey(BookArticle, on_delete=models.SET_DEFAULT, default='bookshelf')
     bookId = models.ForeignKey(Book, on_delete=models.CASCADE)
