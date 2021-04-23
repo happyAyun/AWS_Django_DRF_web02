@@ -35,9 +35,6 @@ def MemoCreate(request):
     serializer = MemoSerializer(data=serializer)
     if serializer.is_valid():
         serializer.save()
-    else{
-        print()
-    }
     return Response(serializer.data)
 
 
