@@ -31,11 +31,11 @@ def BookDetail(request, pk):
 
 @api_view(['POST'])
 def BookCreate(request):
-    request.data['data']['userId'] = request.user.id
-    serializer = request.data['data']
-    print(serializer)
+    request.data['bookMakeList']['userId'] = request.user.id
+    request.data['bookMakeList']['bookImg'] = request.data['BookImg']
+    serializer = request.data['bookMakeList']
     serializer = BookCreateSerializer(data=serializer)
-    if (serializer.is_valid()):
+    if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
 
