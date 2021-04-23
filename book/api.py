@@ -35,13 +35,13 @@ def BookCreate(request):
     serializer = request.data['data']
     print(serializer)
     serializer = BookCreateSerializer(data=serializer)
-    if (serializer.is_valid()):
-        serializer.save()
+    serializer.save()
+    print("save")
     return Response(serializer.data)
+
 
 @api_view(['POST'])
 def Book_ArticleCreate(request, pk):
-
     for i in range(len(request.data['data'])):
         serializer = Book_ArticleSerializer(data=request.data['data'][i])
         if serializer.is_valid():
@@ -78,9 +78,6 @@ def Book_ArticleDetail(request, pk):
     bookArticle = BookArticle.objects.get(articleId=pk)
     serializer = Book_ArticleSerializer(bookArticle, many=False)
     return Response(serializer.data)
-
-
-
 
 
 @api_view(['PUT'])
