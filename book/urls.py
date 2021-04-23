@@ -3,7 +3,7 @@ from . import api
 
 urlpatterns = [
     path('', api.BookList, name="BookList"),
-    path('mybooklist/<str:pk>/', api.MyBookList, name="myBookList"),
+    path('mybooklist/', api.MyBookList, name="myBookList"),
     path('detail/<str:pk>/', api.BookDetail, name="BookDetail"),
     path('create/', api.BookCreate, name="BookCreate"),
     path('update/<str:pk>/', api.BookUpdate, name='BookUpdate'),

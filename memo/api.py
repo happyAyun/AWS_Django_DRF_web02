@@ -6,7 +6,7 @@ from .modelsdto import MemoSerializer, MemoCreateSerializer
 
 @api_view(['GET'])
 def MemoList(request):
-    memos = Memo.objects.all()
+    memos = Memo.objects.all().filter(userId=request.user.id)
     serializer = MemoSerializer(memos, many=True)
     return Response(serializer.data)
 
@@ -32,9 +32,10 @@ def MemoCreate(request):
     request.data['data']['userId'] = request.user.id
     serializer = request.data['data']
     print(serializer)
-    serializer = MemoSerializer(data=serializer)
+    serializer = MemoCreateSerializer(data=serializer)
     if serializer.is_valid():
         serializer.save()
+        print("as_save")
     return Response(serializer.data)
 
 

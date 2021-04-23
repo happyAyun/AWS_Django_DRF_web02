@@ -11,4 +11,4 @@ class MemoSerializer(serializers.ModelSerializer):
 class MemoCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Memo
-        fields = ['memoId', 'memoTitle', 'memoContent', 'articleId', 'bookId', 'userId']
+        fields = ['memoId', 'bookId', 'userId']

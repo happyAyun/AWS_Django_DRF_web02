@@ -21,7 +21,7 @@ def current_user(request):
 
 @api_view(['GET'])
 def MyProfile(request):
-    myProfile = Profile.objects.all().get(user_pk=request.user.di)
+    myProfile = Profile.objects.all().get(user_pk=request.user.id)
     print(request.user.id)
     serializer = MyProfileSerializer(myProfile)
     return Response(serializer.data)

@@ -15,8 +15,8 @@ def BookList(request):
 
 
 @api_view(['GET'])
-def MyBookList(request, pk):
-    books = Book.objects.all().filter(userId=pk)
+def MyBookList(request):
+    books = Book.objects.all().filter(userId=request.user.id)
     serializer = BookProfile(books, many=True)
     return Response(serializer.data)
 
@@ -35,13 +35,18 @@ def BookCreate(request):
     request.data['bookMakeList']['bookImg'] = request.data['BookImg']
     serializer = request.data['bookMakeList']
     serializer = BookCreateSerializer(data=serializer)
+<<<<<<< HEAD
     if serializer.is_valid():
         serializer.save()
+=======
+    serializer.save()
+    print("save")
+>>>>>>> 5cc4ba8e9a78d5bf3c0e30715a9e6a36c4cfb151
     return Response(serializer.data)
+
 
 @api_view(['POST'])
 def Book_ArticleCreate(request, pk):
-
     for i in range(len(request.data['data'])):
         serializer = Book_ArticleSerializer(data=request.data['data'][i])
         if serializer.is_valid():
@@ -78,9 +83,6 @@ def Book_ArticleDetail(request, pk):
     bookArticle = BookArticle.objects.get(articleId=pk)
     serializer = Book_ArticleSerializer(bookArticle, many=False)
     return Response(serializer.data)
-
-
-
 
 
 @api_view(['PUT'])
