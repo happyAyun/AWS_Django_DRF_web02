@@ -15,8 +15,8 @@ def BookList(request):
 
 
 @api_view(['GET'])
-def MyBookList(request, pk):
-    books = Book.objects.all().filter(userId=pk)
+def MyBookList(request):
+    books = Book.objects.all().filter(userId=request.user.id)
     serializer = BookProfile(books, many=True)
     return Response(serializer.data)
 
