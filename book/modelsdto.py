@@ -25,7 +25,7 @@ class BookmarkSerializer(serializers.ModelSerializer):
 class BookProfile(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Book
-        fields = ('bookId', 'bookTitle', 'bookWritter', 'bookIntro')
+        fields = ('bookId', 'bookTitle', 'bookWritter', 'bookIntro', 'bookImg')
 
 
 class BookUpdateSerializer(serializers.ModelSerializer):
