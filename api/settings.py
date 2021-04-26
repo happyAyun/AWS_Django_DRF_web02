@@ -25,13 +25,6 @@ SECRET_KEY = 'django-insecure-3_2z^leuroawt1c5*8*f%!k&2(=f!_=ys_8=h9ql10u+y7-mop
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# Application definition
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # 개발자가 관리하는 파일들
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 사용자가 업로드한 파일 관리
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
 
