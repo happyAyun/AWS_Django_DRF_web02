@@ -25,8 +25,6 @@ SECRET_KEY = 'django-insecure-3_2z^leuroawt1c5*8*f%!k&2(=f!_=ys_8=h9ql10u+y7-mop
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
 # Application definition
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # 개발자가 관리하는 파일들
@@ -39,12 +37,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 사용자가 업로드한 파일
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'xt!de@_*w0!y*@x!bqsb6%zr*tmhh+z2qjoaqwru4vq1@-d-fa'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = [ '*' ]
 
