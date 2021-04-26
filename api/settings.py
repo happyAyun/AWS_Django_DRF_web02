@@ -132,7 +132,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'msa',
-        'USER': 'msa1',
+        'USER': 'msa',
         'PASSWORD': '1234',
         'HOST': '3.34.163.33',
         'PORT': '3306',
