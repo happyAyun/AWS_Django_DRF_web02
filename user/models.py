@@ -10,7 +10,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     user_pk = models.IntegerField(blank=True)
     email = models.EmailField(max_length=500, blank=True)
-    nickname = models.CharField(max_length=200, blank=True)
+    nickname = models.CharField(max_length=200, default='닉네임을 정해주세요', blank=True)
     photo = models.ImageField(upload_to="profile/image", default='profile/image/empty.jpg')
     myInfo = models.CharField(max_length=150, blank=True)
 
