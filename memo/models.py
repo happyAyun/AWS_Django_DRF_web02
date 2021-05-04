@@ -3,6 +3,7 @@ from user.models import User
 from book.models import Book, Book_Article
 # Create your models here.
 
+
 class Memo(models.Model):
     objects = models.Manager()
     memo_id = models.AutoField(primary_key=True)
